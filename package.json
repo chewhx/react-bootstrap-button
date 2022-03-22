@@ -21,6 +21,10 @@
 	],
 	"author": "Chew Han Xiang <hello@chewhx.com>",
 	"license": "MIT",
+	"repository": {
+		"url": "https://github.com/chewhx/react-bootstrap-button"
+	},
+	"homepage": "https://github.com/chewhx/react-bootstrap-button#readme",
 	"peerDependencies": {
 		"bootstrap": "^5.1.3"
 	},

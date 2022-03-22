@@ -45,13 +45,13 @@ const Component = () => {
 Properties for `<BootstrapButton>`
 
 ```typescript
-	buttonProps?: Omit<ButtonProps, 'children'>;
-	isLoading?: boolean;
-	isDisabled?: boolean;
-	loaderPosition?: 'left' | 'right';
-	loaderProps?: SpinnerProps;
-	loadingMessage?: string;
-	icon?: ReactElement;
+buttonProps?: Omit<ButtonProps, 'children'>;
+isLoading?: boolean;
+isDisabled?: boolean;
+loaderPosition?: 'left' | 'right';
+loaderProps?: SpinnerProps;
+loadingMessage?: string;
+icon?: ReactElement;
 ```
 
 - [Button Props API](https://react-bootstrap.github.io/components/buttons/#button-props)
