@@ -1,56 +1,76 @@
-import React, {
-	ComponentPropsWithoutRef,
-	ComponentType,
-	DOMAttributes,
-	FC,
-	HTMLProps,
-	ReactElement,
-} from 'react';
+import React, { DOMAttributes, FC, HTMLAttributes } from 'react';
+import PropTypes from 'prop-types';
 import { Button, ButtonProps, Spinner, SpinnerProps } from 'react-bootstrap';
-// import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-export type ReactBootstrapButtonProps = {
-	buttonProps?: Omit<ButtonProps, 'children'>;
-	isLoading?: boolean;
-	isDisabled?: boolean;
-	loaderPosition?: 'left' | 'right';
-	loaderProps?: SpinnerProps;
-	loadingMessage?: string;
-	icon?: ReactElement;
+export type ReactBootstrapButtonProps = DOMAttributes<HTMLButtonElement> &
+	HTMLAttributes<HTMLButtonElement> &
+	Omit<ButtonProps, 'children'> & {
+		isLoading?: boolean;
+		isDisabled?: boolean;
+		spinnerPosition?: 'left' | 'right';
+		spinnerProps?: SpinnerProps;
+		loadingMessage?: string;
+		leftIcon?: React.ReactNode;
+		ref?: React.Ref<HTMLButtonElement>;
+	};
+
+const defaultProps: Partial<ReactBootstrapButtonProps> = {
+	spinnerPosition: 'left',
 };
 
-const BootstrapButton: FC<
-	ReactBootstrapButtonProps & DOMAttributes<HTMLButtonElement>
-> = ({
-	buttonProps,
-	isLoading,
-	isDisabled,
-	loaderPosition,
-	loaderProps,
-	loadingMessage,
-	icon,
-	children,
-	...rest
-}) => {
-	return (
-		<Button disabled={isLoading || isDisabled} {...buttonProps} {...rest}>
-			<div className="d-flex justify-content-between align-items-center mx-2">
-				{isLoading && loaderPosition === 'left' && (
-					<Spinner animation="border" size="sm" {...loaderProps} />
-				)}
-				{!isLoading && icon}
-				<div className="mx-2">
-					{isLoading && loadingMessage ? loadingMessage : children || 'Button'}
+const propTypes = {
+	children: PropTypes.any,
+};
+
+const BootstrapButton: FC<ReactBootstrapButtonProps> = React.forwardRef<
+	HTMLButtonElement,
+	ReactBootstrapButtonProps
+>(
+	(
+		{
+			isLoading,
+			isDisabled,
+			spinnerPosition,
+			spinnerProps,
+			loadingMessage,
+			leftIcon,
+			children,
+			...rest
+		},
+		ref
+	) => {
+		return (
+			<Button disabled={isLoading || isDisabled} {...rest} ref={ref}>
+				<div className="d-flex justify-content-between align-items-center mx-2">
+					{isLoading && spinnerPosition === 'left' && (
+						<Spinner
+							data-testid="left-spinner"
+							animation="border"
+							size="sm"
+							{...spinnerProps}
+						/>
+					)}
+					{!isLoading && leftIcon}
+					{children && (
+						<div className="mx-2">
+							{isLoading && loadingMessage ? loadingMessage : children}
+						</div>
+					)}
+					{isLoading && spinnerPosition === 'right' && (
+						<Spinner
+							data-testid="right-spinner"
+							animation="border"
+							size="sm"
+							{...spinnerProps}
+						/>
+					)}
 				</div>
-				{isLoading && loaderPosition === 'right' && (
-					<Spinner animation="border" size="sm" />
-				)}
-			</div>
-		</Button>
-	);
-};
+			</Button>
+		);
+	}
+);
 
+BootstrapButton.displayName = 'BootstrapButton';
+BootstrapButton.defaultProps = defaultProps;
+BootstrapButton.propTypes = propTypes;
 export default BootstrapButton;
-BootstrapButton.defaultProps = {
-	loaderPosition: 'left',
-};
