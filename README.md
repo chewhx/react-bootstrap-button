@@ -42,21 +42,22 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BootstrapButton } from 'react-bootstrap-button';
 
 const Component = () => {
-  // other code above...
+	// other code above...
 
-  const [clicked, setClicked] = useState(false)
+	const [clicked, setClicked] = useState(false);
+	const handleClick = () => setClicked(true);
 
-  const handleClick = () => setClicked(true)
-
-	<BootstrapButton
-      variant="danger"
-      className="m-4"
-      isLoading={clicked}
-      loadingMessage="This button is loading..."
-      onClick={handleClick}
-    >
-	  Click me
-	</BootstrapButton>;
+	return (
+		<BootstrapButton
+			variant="danger"
+			className="m-4"
+			isLoading={clicked}
+			loadingMessage="This button is loading..."
+			onClick={handleClick}
+		>
+			Click me
+		</BootstrapButton>
+	);
 
 	// other code below...
 };
@@ -72,12 +73,11 @@ isDisabled?: boolean;
 spinnerPosition?: 'left' | 'right';
 spinnerProps?: SpinnerProps; // see React Spinner Props Api
 loadingMessage?: string;
-icon?: ReactElement;
+leftIcon?: ReactElement;
 ```
 
 - [React-Bootstrap Button Props](https://react-bootstrap.github.io/components/buttons/#button-props)
 - [React-Bootstrap Spinner Props](https://react-bootstrap.github.io/components/spinners/#spinner-props)
-
 
 ## License
 
