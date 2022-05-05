@@ -1,0 +1,94 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import Button from './BootstrapButton';
+import { FaUserCircle, FaFireAlt } from 'react-icons/fa';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+<Meta title="Button" />
+
+# React Bootstrap Loading Button
+
+[Source Code](https://github.com/chewhx/react-bootstrap-button/blob/main/src/components/BootstrapButton.tsx)
+
+```jsx
+import { BootstrapButton } from 'react-bootstrap-button';
+```
+
+## Overview
+
+Bootstrap styled button with loading state
+
+export const Loading = () => {
+	const [loading, setLoading] = React.useState(false);
+	const toggle = () => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 4000);
+	};
+	return (
+		<Button isLoading={loading} onClick={toggle} leftIcon={<FaFireAlt />}>
+			Click to action
+		</Button>
+	);
+};
+
+<Canvas>
+	<Loading />
+</Canvas>
+
+```jsx
+export const Loading = () => {
+	const [loading, setLoading] = React.useState(false);
+	const toggle = () => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 4000);
+	};
+	return (
+		<Button isLoading={loading} onClick={toggle} leftIcon={<FaFireAlt />}>
+			Click to action
+		</Button>
+	);
+};
+```
+
+## API
+
+<ArgsTable of={Button} />
+
+## Loading Button
+
+Activate loading state by passing `isLoading` prop
+
+<Canvas>
+	<Button isLoading variant="primary" />
+	<Button isLoading variant="secondary" />
+	<Button isLoading variant="success" />
+	<Button isLoading variant="danger" />
+	<Button isLoading variant="warning" />
+	<Button isLoading variant="info" />
+	<Button isLoading variant="light" />
+	<Button isLoading variant="dark" />
+	<Button isLoading variant="link" />
+</Canvas>
+
+## Button w/ icons
+
+<Canvas>
+	<Button leftIcon={<FaUserCircle />}>Complete something</Button>
+	<Button isLoading leftIcon={<FaUserCircle />} loadingMessage="Completing...">
+		Complete something
+	</Button>
+</Canvas>
+
+## Customise spinner
+
+<Canvas>
+	<Button
+		spinnerProps={{ animation: 'grow', className: 'bg-dark me-4' }}
+		isLoading
+	>
+		Growing spinner
+	</Button>
+</Canvas>

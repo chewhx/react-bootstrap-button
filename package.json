@@ -9,8 +9,8 @@
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"build": "rimraf dist && rollup -c",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+		"docs": "start-storybook -p 6006",
+		"build-docs": "build-storybook -o docs"
 	},
 	"keywords": [
 		"bootstrap",

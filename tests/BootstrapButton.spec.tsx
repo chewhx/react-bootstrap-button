@@ -2,23 +2,23 @@ import React from 'react';
 import { fireEvent, render, within } from '@testing-library/react';
 import sinon from 'sinon';
 
-import BootstopButton from '../src/components/BootstrapButton';
+import BootstrapButton from '../src/components/BootstrapButton';
 
-describe('<BootstopButton>', () => {
+describe('<BootstrapButton>', () => {
 	it('Should output a button', () => {
-		const { getByRole } = render(<BootstopButton>Button</BootstopButton>);
+		const { getByRole } = render(<BootstrapButton>Button</BootstrapButton>);
 		expect(getByRole('button')).toBeDefined();
 	});
 
 	it('Should have type=button by default', () => {
-		const { getByRole } = render(<BootstopButton>Button</BootstopButton>);
+		const { getByRole } = render(<BootstrapButton>Button</BootstrapButton>);
 		expect(getByRole('button')).toHaveAttribute('type');
 		expect(getByRole('button').getAttribute('type')).toBe('button');
 	});
 
 	it('Should show the type if passed one', () => {
 		const { getByRole } = render(
-			<BootstopButton type="submit">Button</BootstopButton>
+			<BootstrapButton type="submit">Button</BootstrapButton>
 		);
 		expect(getByRole('button')).toHaveAttribute('type');
 		expect(getByRole('button').getAttribute('type')).toBe('submit');
@@ -26,18 +26,18 @@ describe('<BootstopButton>', () => {
 
 	it('Should show the type if explicitly passed in when "as" is used', () => {
 		const { getByTestId } = render(
-			<BootstopButton as="div" type="submit" data-testid="test">
+			<BootstrapButton as="div" type="submit" data-testid="test">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 		expect(getByTestId('test').getAttribute('type')).toBe('submit');
 	});
 
 	it('Should not have default type=button when "as" is used', () => {
 		const { getByTestId } = render(
-			<BootstopButton as="div" data-testid="test">
+			<BootstrapButton as="div" data-testid="test">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		expect(getByTestId('test').getAttribute('type')).toBe(null);
@@ -47,7 +47,7 @@ describe('<BootstopButton>', () => {
 		const ref = React.createRef<HTMLButtonElement>();
 		render(
 			<div>
-				<BootstopButton ref={ref}>Yo</BootstopButton>
+				<BootstrapButton ref={ref}>Yo</BootstrapButton>
 			</div>
 		);
 
@@ -55,9 +55,9 @@ describe('<BootstopButton>', () => {
 
 		render(
 			<div>
-				<BootstopButton ref={ref} href="a">
+				<BootstrapButton ref={ref} href="a">
 					Yo
-				</BootstopButton>
+				</BootstrapButton>
 			</div>
 		);
 
@@ -68,7 +68,7 @@ describe('<BootstopButton>', () => {
 		const href = '/url';
 
 		const { getByRole } = render(
-			<BootstopButton href={href}>Title</BootstopButton>
+			<BootstrapButton href={href}>Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').getAttribute('href')).toBe(href);
@@ -78,7 +78,7 @@ describe('<BootstopButton>', () => {
 		const onClick = sinon.spy();
 
 		const { getByRole } = render(
-			<BootstopButton onClick={onClick}>Title</BootstopButton>
+			<BootstrapButton onClick={onClick}>Title</BootstrapButton>
 		);
 
 		fireEvent.click(getByRole('button'));
@@ -88,23 +88,23 @@ describe('<BootstopButton>', () => {
 
 	it('Should be disabled', () => {
 		const { getByRole } = render(
-			<BootstopButton disabled>Title</BootstopButton>
+			<BootstrapButton disabled>Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').hasAttribute('disabled')).toBe(true);
 	});
 
 	it('Should not be disabled', () => {
-		const { getByRole } = render(<BootstopButton>Title</BootstopButton>);
+		const { getByRole } = render(<BootstrapButton>Title</BootstrapButton>);
 
 		expect(getByRole('button').hasAttribute('disabled')).toBe(false);
 	});
 
 	it('Should be disabled link', () => {
 		const { getByRole } = render(
-			<BootstopButton disabled href="#">
+			<BootstrapButton disabled href="#">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('disabled')).toBe(true);
@@ -112,7 +112,7 @@ describe('<BootstopButton>', () => {
 
 	it('Should apply variant class', () => {
 		const { getByRole } = render(
-			<BootstopButton variant="danger">Title</BootstopButton>
+			<BootstrapButton variant="danger">Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('btn-danger')).toBe(true);
@@ -120,7 +120,7 @@ describe('<BootstopButton>', () => {
 
 	it('Should have size class', () => {
 		const { getByRole } = render(
-			<BootstopButton size="lg">Title</BootstopButton>
+			<BootstrapButton size="lg">Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('btn-lg')).toBe(true);
@@ -128,9 +128,9 @@ describe('<BootstopButton>', () => {
 
 	it('Should honour additional classes passed in, adding not overriding', () => {
 		const { getByRole } = render(
-			<BootstopButton className="ken" variant="danger">
+			<BootstrapButton className="ken" variant="danger">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		const button = getByRole('button');
@@ -139,14 +139,14 @@ describe('<BootstopButton>', () => {
 	});
 
 	it('Should default to variant="primary"', () => {
-		const { getByRole } = render(<BootstopButton>Title</BootstopButton>);
+		const { getByRole } = render(<BootstrapButton>Title</BootstrapButton>);
 
 		expect(getByRole('button').classList.contains('btn-primary')).toBe(true);
 	});
 
 	it('Should remove default variant', () => {
 		const { getByRole } = render(
-			<BootstopButton variant={null as any}>Title</BootstopButton>
+			<BootstrapButton variant={null as any}>Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('btn-primary')).toBe(false);
@@ -154,7 +154,7 @@ describe('<BootstopButton>', () => {
 
 	it('Should not output null variant', () => {
 		const { getByRole } = render(
-			<BootstopButton variant="">Title</BootstopButton>
+			<BootstrapButton variant="">Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('btn-null')).toBe(false);
@@ -162,23 +162,25 @@ describe('<BootstopButton>', () => {
 
 	it('Should not output empty variant', () => {
 		const { getByRole } = render(
-			<BootstopButton variant="">Title</BootstopButton>
+			<BootstrapButton variant="">Title</BootstrapButton>
 		);
 
 		expect(getByRole('button').classList.contains('btn-')).toBe(false);
 	});
 
 	it('Should be active', () => {
-		const { getByRole } = render(<BootstopButton active>Title</BootstopButton>);
+		const { getByRole } = render(
+			<BootstrapButton active>Title</BootstrapButton>
+		);
 
 		expect(getByRole('button').classList.contains('active')).toBe(true);
 	});
 
 	it('Should allow a custom prefix', () => {
 		const { getByRole } = render(
-			<BootstopButton bsPrefix="my-btn" variant="danger">
+			<BootstrapButton bsPrefix="my-btn" variant="danger">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		const button = getByRole('button');
@@ -188,16 +190,16 @@ describe('<BootstopButton>', () => {
 
 	it('Should be disabled when isLoading is true', () => {
 		const { getByRole } = render(
-			<BootstopButton isLoading>Title</BootstopButton>
+			<BootstrapButton isLoading>Title</BootstrapButton>
 		);
 		expect(getByRole('button').hasAttribute('disabled')).toBe(true);
 	});
 
 	it('Should show given loadingMessage when isLoading is true', () => {
 		const { getByRole } = render(
-			<BootstopButton isLoading loadingMessage="This can be anything...">
+			<BootstrapButton isLoading loadingMessage="This can be anything...">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		expect(getByRole('button').textContent).toBe('This can be anything...');
@@ -205,9 +207,9 @@ describe('<BootstopButton>', () => {
 
 	it('Should show a spinner when isLoading is true', () => {
 		const { getByRole } = render(
-			<BootstopButton isLoading loadingMessage="This can be anything...">
+			<BootstrapButton isLoading loadingMessage="This can be anything...">
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		const button = getByRole('button');
@@ -218,13 +220,13 @@ describe('<BootstopButton>', () => {
 
 	it('Should show a spinner on right side', () => {
 		const { getByRole } = render(
-			<BootstopButton
+			<BootstrapButton
 				isLoading
 				spinnerPosition="right"
 				loadingMessage="This can be anything..."
 			>
 				Title
-			</BootstopButton>
+			</BootstrapButton>
 		);
 
 		const button = getByRole('button');
