@@ -6,3 +6,4 @@ rollup.config.js
 tests
 src
 tsconfig.json
+docs
