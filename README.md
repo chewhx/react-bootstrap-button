@@ -4,33 +4,25 @@ This is a quick save for anyone looking to add a loading button for Bootstrap in
 
 **Note: You must install peer dependency [bootstrap](https://www.npmjs.com/package/bootstrap) and import the bootstrap stylesheet**
 
-# v1.0.0
+## Links
 
-### Breaking Changes
-
-- Removed `buttonProps`, you can now passed the props on the `<ReactBootstrapButton>` itself
-- Renamed `loaderPosition` to `spinnerPosition`
-- Renamed `spinnerProps` to `spinnerProps`
-- Added ability to forward `ref`
-- Renamed `icon` to `leftIcon` (prepare for the possibility of adding a right icon)
+- [Demo](https://chewhx.github.io/react-bootstrap-button)
+- 📦 [NPM](https://www.npmjs.com/package/react-bootstrap-button)
+- 🗄️ [Repo](https://github.com/chewhx/react-bootstrap-button)
+- 🐙 [GitHub](https://github.com/chewhx)
+- 🖥️ [Website](https://www.chewhx.com)
 
 ## Installation
 
-Install the package
+1. Install the package and bootstrap
 
 ```bash
-npm install react-bootstrap-button
+npm install react-bootstrap-button bootstrap
 ```
 
-If you have not already done so, inject bootstrap styles with guides from the [official bootstrap documentation](https://getbootstrap.com/docs/5.1/getting-started/introduction/).
+For other installation methods of bootstrap styles, refer to guides from the [official bootstrap documentation](https://getbootstrap.com/docs/5.1/getting-started/introduction/).
 
-Using npm:
-
-```bash
-npm install bootstrap
-```
-
-In your App.js:
+2. Import bootstrap stylesheet in your App.js:
 
 ```javascript
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -50,7 +42,8 @@ const Component = () => {
 	return (
 		<BootstrapButton
 			variant="danger"
-			className="m-4"
+      // You may include all react-bootstrap button props
+			className="m-4".
 			isLoading={clicked}
 			loadingMessage="This button is loading..."
 			onClick={handleClick}
@@ -68,12 +61,14 @@ const Component = () => {
 Properties for `<BootstrapButton>` includes those from React-Bootstrap Button and the following:
 
 ```typescript
-isLoading?: boolean;
-isDisabled?: boolean;
-spinnerPosition?: 'left' | 'right';
-spinnerProps?: SpinnerProps; // see React Spinner Props Api
-loadingMessage?: string;
-leftIcon?: ReactElement;
+type BootstrapButton = {
+	isLoading?: boolean;
+	isDisabled?: boolean;
+	spinnerPosition?: 'left' | 'right';
+	spinnerProps?: SpinnerProps; // see React Spinner Props Api
+	loadingMessage?: string;
+	leftIcon?: ReactElement;
+};
 ```
 
 - [React-Bootstrap Button Props](https://react-bootstrap.github.io/components/buttons/#button-props)
@@ -82,13 +77,6 @@ leftIcon?: ReactElement;
 ## License
 
 MIT Licence
-
-## Links
-
-- 🐙 [GitHub](https://github.com/chewhx)
-- 🖥️ [Website](https://www.chewhx.com)
-- 📦 [NPM](https://www.npmjs.com/package/react-bootstrap-button)
-- 🗄️ [Repo](https://github.com/chewhx/react-bootstrap-button)
 
 ## References
 

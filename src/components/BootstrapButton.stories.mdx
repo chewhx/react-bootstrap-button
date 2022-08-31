@@ -26,7 +26,12 @@ export const Loading = () => {
 		}, 4000);
 	};
 	return (
-		<Button isLoading={loading} onClick={toggle} leftIcon={<FaFireAlt />}>
+		<Button
+			isLoading={loading}
+			onClick={toggle}
+			leftIcon={<FaFireAlt />}
+			spinnerPosition="right"
+		>
 			Click to action
 		</Button>
 	);
